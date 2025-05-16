@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://mydomain.org/mysite/</loc>
+         <lastmod>2025-05-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/index%20copy/</loc>
+         <lastmod>2025-05-16</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/%E4%B8%AA%E4%BA%BA/config/</loc>
+         <lastmod>2025-05-16</lastmod>
+    </url>
+</urlset>

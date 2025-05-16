@@ -1,8 +1,8 @@
 site_name: Wiki-Fan
 site_author: Wiki-Fan
 copyright: Copyright &copy; 2024 Wiki-Fan
-site_url: https://vanZF.github.io
-# repo_url: https://github.com/squidfunk/mkdocs-material
+site_url: https://mydomain.org/mysite
+repo_url: https://github.com/squidfunk/mkdocs-material
 
 # markdown_extentions:
 #   - admonition
