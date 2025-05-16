@@ -10,24 +10,43 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Configure Git Credentials
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 这一步是为了获取足够的提交历史
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
         run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v4
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs
-      - run: pip install mkdocs-material
-      - run: pip install mkdocs-blogging-plugin  # 记得安装其他依赖的库
-      - run: mkdocs gh-deploy --force
-        with:
-        token: ${{ secrets.GH_TOKEN }}
+          pip install mkdocs mkdocs-material mkdocs-blogging-plugin 
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "action@github.com"
+          mkdocs gh-deploy --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # 使用你设置的 Secret
+
+      # - uses: actions/checkout@v4
+      # - name: Configure Git Credentials
+      #   run: |
+      #     git config user.name github-actions[bot]
+      #     git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: 3.x
+      # - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      # - uses: actions/cache@v4
+      #   with:
+      #     key: mkdocs-material-${{ env.cache_id }}
+      #     path: .cache
+      #     restore-keys: |
+      #       mkdocs-material-
+      
+      # - run: mkdocs gh-deploy --force
+      #   with:
+      #   token: ${{ secrets.GH_TOKEN }}
