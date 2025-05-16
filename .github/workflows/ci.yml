@@ -28,8 +28,8 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "action@github.com"
           mkdocs gh-deploy --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # 使用你设置的 Secret
+        with:
+          token: ${{ secrets.GH_TOKEN }}  # 使用你设置的 Secret
 
       # - uses: actions/checkout@v4
       # - name: Configure Git Credentials
