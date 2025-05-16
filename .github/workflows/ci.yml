@@ -21,6 +21,7 @@ jobs:
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v4
         with:
+          token: ${{ secrets.GH_TOKEN }}
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
@@ -29,5 +30,4 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocs-blogging-plugin  # 记得安装其他依赖的库
       - run: mkdocs gh-deploy --force
-        with:
-        token: ${{ secrets.GH_TOKEN }}
+          
