@@ -29,3 +29,5 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocs-blogging-plugin  # 记得安装其他依赖的库
       - run: mkdocs gh-deploy --force
+        with:
+        token: ${{ secrets.GH_TOKEN }}
